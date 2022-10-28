@@ -1,45 +1,99 @@
-
-* {
-    box-sizing: border-box;
-    margin : 0;
-    padding: 0;
+:root {
+	--text-color: rgb(212, 212, 212);
+	--text-colorDark: rgb(255, 238, 234);
+	--background-color: rgb(36, 36, 36);
+	--logo-color: rgb(185, 27, 27);
 }
 
-a { text-decoration: none;  }
-
-ul {
-    list-style-type: none;
-    height: 48px;
-    width: 100%;
-    background-color: black;
-    display: flex;
+body{
+	margin: 0;
+	/* font-family: 'Gowun Dodum', sans-serif; */
 }
 
-ul > li {
-    color: lightgray;
-    height : 100%;
-    width:100px;
-    display:flex;
-    align-items: center;
+a{
+	text-decoration: none;
+	color: var(--text-color);
 }
 
-ul > li > a {
-    color: lightgray;
-    margin:auto;
-    padding: 10px;
-    font-size:20px;
-    align-items: center;
+.navbar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--background-color);
+	padding: 8px 12px;
 }
 
-ul > li > a:hover {
-    color :white;
-    border-bottom: 3px solid rgb(209, 209, 209);
+.navbar__logo {
+	/* font-family: 'Gugi', cursive; */
+	font-size: 30px;
+	font-weight: 900;
+	color: var(--logo-color);
+	
+}
+.navbar__logo a {
+	color: var(--text-colorDark);
 }
 
-#logo {
-    color:white;
-    font-size: 18px;
-    padding-left:40px;
-    margin-right:auto;
-    display: flex;
-}</style>
+.navbar__menu {
+	display: flex;
+	list-style: none;
+	padding-left: 0;
+}
+.navbar__menu li {
+	padding: 8px 12px;
+}
+.navbar__menu li:hover {
+	background-color: var(--text-colorDark);
+	border-radius: 4px;
+}
+
+.navbar__search {
+	list-style: none;
+	color: var(--text-colorDark);
+	font-weight: 900;
+	display: flex;
+}
+.navbar__search li {
+	padding: 8px 4px;
+}
+
+.navbar__toogleBtn {
+	display: none;
+	position: absolute;
+	right: 32px;
+	font-size: 24px;
+	color: var(--text-colorDark);
+}
+
+@media screen and (max-width: 970px){
+	.navbar {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 8px 24px;
+	}
+	.navbar__menu {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
+	.navbar__menu li {
+		width: 100%;
+		text-align: center;
+	}
+
+	.navbar__search {
+		display: none;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.navbar__toogleBtn {
+		display: block;
+	}
+
+	.navbar__menu.active,
+	.navbar__search.active {
+		display: flex;
+	}
+}

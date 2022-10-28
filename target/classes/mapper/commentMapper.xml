@@ -21,7 +21,7 @@
         INSERT INTO comment2
             (bno, pcno, comment, commenter, reg_date, up_date)
         VALUES
-            (#{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
+            (#{bno}, #{pcno}, #{comment}, #{commenter}, sysdate, sysdate)
     </insert>
 
     <select id="selectAll" parameterType="int" resultType="CommentDto">
@@ -40,7 +40,7 @@
     <update id="update" parameterType="CommentDto">
         UPDATE comment2
         SET comment = #{comment}
-          , up_date = now()
+          , up_date = sysdate
         WHERE cno = #{cno} and commenter = #{commenter}
     </update>
 </mapper>

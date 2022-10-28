@@ -10,11 +10,10 @@
     <meta charset="UTF-8">
     <title>Seoul Market</title>
     <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <style>
-        * { box-sizing:border-box; }
-        a { text-decoration: none; }
-        form {
+    <script src="https://kit.fontawesome.com/e4a42c4ca5.js" crossorigin="anonymous"></script>
+    <script src="js/main.js" defer></script>
+<style>
+	form {
             width:400px;
             height:500px;
             display : flex;
@@ -35,7 +34,7 @@
             padding: 0 10px;
             margin-bottom: 10px;
         }
-        button {
+	button {
             background-color: rgb(42, 42, 42);
             color : white;
             width:300px;
@@ -45,32 +44,42 @@
             border-radius: 5px;
             margin : 20px 0 30px 0;
         }
-        #title {
+    #title {
             font-size : 50px;
             margin: 40px 0 30px 0;
         }
-        #msg {
+    #msg {
             height: 30px;
             text-align:center;
             font-size:16px;
             color:red;
             margin-bottom: 20px;
         }
-    </style>
+</style>
 </head>
 <body>
-<div id="menu">
-    <ul>
-        <li id="logo">Seoul Market</li>
-        <li><a href="<c:url value='/'/>">Home</a></li>
-        <li><a href="<c:url value='/'/>">상권지도</a></li>
-        <li><a href="<c:url value='/'/>">상권도표</a></li>
-        <li><a href="<c:url value='/board/list'/>">Board</a></li>
-        <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
-        <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
-        <li><a href=""><i class="fa fa-search"></i></a></li>
-    </ul>
-</div>
+<nav class="navbar">
+    <div class="navbar__logo">
+      <i class="fa-solid fa-chart-pie"></i>
+      <a href="">상권분석</a>
+    </div>
+    <div class="navbar__menu">
+      <li><a href="<c:url value='/'/>">Home</a></li>
+      <li><a href="<c:url value='/'/>">지도 분석</a></li>
+      <li><a href="<c:url value='/'/>">상권 현황</a></li>
+      <li><a href="<c:url value='/board/list'/>">Board</a></li>
+      <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
+      <li><a href="<c:url value='/register/add'/>">Sign in</a></li>
+      <li><a href="<c:url value='/'/>">사이트 소개</a></li>
+    </div>
+    <div class="navbar__search">
+      <li><a href=""><i class="fa-brands fa-sistrix"></i></a></li>
+      <li><input type="text" placeholder="검색어 입력"></li>
+    </div>
+    <a href="#" class="navbar__toogleBtn">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+  </nav>
 <form action="<c:url value="/login/login"/>" method="post" onsubmit="return formCheck(this);">
     <h3 id="title">Login</h3>
     <div id="msg">

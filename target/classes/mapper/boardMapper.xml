@@ -16,16 +16,16 @@
 
     <insert id="insert" parameterType="BoardDto">
         INSERT INTO board2
-            (title, content, writer)
+            (bno, title, content, writer)
         VALUES
-            (#{title}, #{content}, #{writer})
+            (SEQUENCE1, #{title}, #{content}, #{writer})
     </insert>
 
     <update id="update" parameterType="BoardDto">
         UPDATE board2
         SET   title   = #{title}
           , content = #{content}
-          , up_date = now()
+          , up_date = sysdate
         WHERE bno = #{bno} and writer = #{writer}
     </update>
 
@@ -63,13 +63,13 @@
     <sql id="searchCondition">
         <choose>
             <when test='option=="T"'>
-                AND title LIKE concat('%', #{keyword}, '%')
+                AND title LIKE '%'||#{keyword}||'%')
             </when>
             <when test='option=="W"'>
-                AND writer LIKE concat('%', #{keyword}, '%')
+                AND writer LIKE '%'||#{keyword}||'%')
             </when>
             <otherwise>
-                AND (title LIKE concat('%', #{keyword}, '%') OR content LIKE concat('%', #{keyword}, '%'))
+                AND (title LIKE '%'||#{keyword}||'%' OR content LIKE '%'||#{keyword}||'%')
             </otherwise>
         </choose>
     </sql>
@@ -79,7 +79,7 @@
         FROM board2
         WHERE true
         <include refid="searchCondition"/>
-        AND title LIKE concat('%', #{keyword}, '%')
+        AND title LIKE '%'||#{keyword}||'%'
         ORDER BY reg_date DESC, bno DESC
             LIMIT #{offset}, #{pageSize}
     </select>
