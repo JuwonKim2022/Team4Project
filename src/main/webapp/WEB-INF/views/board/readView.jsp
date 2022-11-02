@@ -7,8 +7,21 @@
 	 	<title>게시판</title>
 	 	<script src="https://kit.fontawesome.com/e4a42c4ca5.js" crossorigin="anonymous"></script>
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  	<style type="text/css">
+			textarea { 
+			 overflow: hidden;
+			 resize: none;
+			}
+		</style>
 	</head>
-	
+	<script type="text/javascript">
+		//본문크기 자동 조절
+		$('textarea').on('keyup', function(e)){
+				$(this).css('height', 'auto');
+				$(this).height(this.scrollHeight);
+			});
+		});
+	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='readForm']");
@@ -73,7 +86,8 @@
 	</script>
 	
 	<body>
-		  <nav class="navbar navbar-expand-lg bg-light">
+<body>
+  <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="<c:url value='/'/>">
         <i class="fa-brands fa-freebsd"> market A</i>
@@ -84,12 +98,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
           <li class="nav-item1">
-            <a class="nav-link active1" aria-current="page1" href="<c:url value='/board/list'/>">상권 지도</a>
+            <a class="nav-link active1" aria-current="page1" href="#">상권지도</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              커뮤니티
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">커뮤니티</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">공지사항</a></li>
               <li><a class="dropdown-item" href="#">묻고 답하기</a></li>
@@ -97,9 +109,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              나의 공간
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">내 공간</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">내 정보</a></li>
               <li><hr class="dropdown-divider"></li>
@@ -107,21 +117,11 @@
               <li><a class="dropdown-item" href="#">북마크</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              사이트 소개
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">사이트 소개</a></li>
-              <li><a class="dropdown-item" href="#">참고 사이트</a></li>
-              <li><a class="dropdown-item" href="#">사이트맵</a></li>
-            </ul>
-          </li>
           <li class="nav-item3">
             <a class="nav-link active3" aria-current="page3" href="<c:url value='/login/login'/>">로그인</a>
           </li>
           <li class="nav-item4">
-            <a class="nav-link active4" aria-current="page4" href="<c:url value='/register/add'/>">회원가입</a>
+            <a class="nav-link active4" aria-current="page4" href="<c:url value='/resources/registerForm.html'/>">회원가입</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -160,7 +160,7 @@
 				<br/>
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">내용</label>
-					<textarea id="content" name="content" class="form-control" readonly="readonly"><c:out value="${read.content}"/></textarea>
+					<textarea id="content" name="content" class="fulltext form-control" onkeydown="resize(this)" onkeyup="resize(this)" readonly="readonly"><c:out value="${read.content}"/></textarea>
 				</div>
 				<br/>
 				<div class="form-group">
@@ -259,5 +259,6 @@
 			<hr />
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		
 	</body>
 </html>

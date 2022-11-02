@@ -6,7 +6,7 @@
 	 	<title>게시판</title>
   	<script src="https://kit.fontawesome.com/e4a42c4ca5.js" crossorigin="anonymous"></script>
   	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-	 
+	  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 	</head>
 	<body>
 	  <nav class="navbar navbar-expand-lg bg-light">
@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
           <li class="nav-item1">
-            <a class="nav-link active1" aria-current="page1" href="<c:url value='/board/list'/>">상권 지도</a>
+            <a class="nav-link active1" aria-current="page1" href="#">상권 지도</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +57,7 @@
             <a class="nav-link active3" aria-current="page3" href="<c:url value='/login/login'/>">로그인</a>
           </li>
           <li class="nav-item4">
-            <a class="nav-link active4" aria-current="page4" href="<c:url value='/register/add'/>">회원가입</a>
+            <a class="nav-link active4" aria-current="page4" href="<c:url value='/resources/registerForm.html'/>">회원가입</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -133,11 +133,11 @@
     					</div>
     				</div>
     				<script>
-      					$(function(){
-        					$('#searchBtn').click(function() {
-          						self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        					});
-      					});   
+    				$(function(){
+    			        $('#searchBtn').click(function() {
+    			          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+    			        });
+    			      });  
     				</script>
   				</div>
   				
