@@ -45,10 +45,10 @@
             </ul>
           </li>
           <li class="nav-item3">
-            <a class="nav-link active3" aria-current="page3" href="<c:url value='/login/login'/>">로그인</a>
+            <a class="nav-link active3" aria-current="page3" href="<c:url value='/signUp/login'/>">로그인</a>
           </li>
           <li class="nav-item4">
-            <a class="nav-link active4" aria-current="page4" href="<c:url value='/form3'/>">회원가입</a>
+            <a class="nav-link active4" aria-current="page4" href="<c:url value='/resources/registerForm.html'/>">회원가입</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
