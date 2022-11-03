@@ -26,20 +26,24 @@ public class SignUpDAOImpl implements SignUpDAO {
 		return result;
 	}
 
+	
 	//회원가입구현 -> memberMapper.xml 작성 후 아래 메서드 작성 -> MemberDAOtest.java 이동
-	@Override
-	public void insertSignUp(UserVO userVo) {
-		System.out.println("#####");
-		sqlSession.insert(namespace+".insertMember", userVo); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
-	}
+	   @Override
+	   public void insertSignUp(UserVO userVo) {
+	   
+	      sqlSession.insert("signUpMapper.insertSignUp",userVo ); //괄호안은 (쿼리구문, 매개변수)순으로 입력하기
+	   }
 
-	//회원 정보 조회-사용자 ID 해당하는 정보 가져오기
-	@Override
-	public UserVO readSignUp(String id) throws Exception {
-		//테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
-		UserVO userVo = sqlSession.selectOne(namespace+".readMember", id); //괄호안의 물음표를 콤마뒤에 쓰는거임
-		return userVo;
-	}
+	   
+	 //회원 정보 조회-사용자 ID 해당하는 정보 가져오기 - 
+	   @Override
+	   public UserVO readSignUp(String id) throws Exception {
+	      //테스트(컨트롤러) 호출 -> 정보를 저장 -> DB로이동
+	   
+	   UserVO result;
+	   result=sqlSession.selectOne("signUpMapper.readSignUp", id); //괄호안의 물음표를 콤마뒤에 쓰는거임
+	   return result;
+	   }
 
 	//인터페이스 선언 -> 서브클래스 구현
 	//회원 정보 조회 - ID,PW정보에 해당하는 사용자 정보

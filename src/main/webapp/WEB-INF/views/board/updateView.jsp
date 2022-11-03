@@ -49,7 +49,7 @@
 	</script>
 	<body>
 	
-		<div id="root">
+		<div class="container">
 			<header>
 				<h1> 게시판</h1>
 			</header>
@@ -63,34 +63,37 @@
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/update">
 					<input type="hidden" name="bno" value="${update.bno}" readonly="readonly"/>
-					<table>
-						<tbody>
-							<tr>
-								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" value="${update.title}" class="chk" title="제목을 입력하세요."/>
-								</td>
-							</tr>	
-							<tr>
-								<td>
-									<label for="content">내용</label><textarea id="content" name="content" class="chk" title="내용을 입력하세요."><c:out value="${update.content}" /></textarea>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" value="${update.writer}" readonly="readonly"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
-								</td>
-							</tr>		
-						</tbody>			
-					</table>
+					
+					<div class="shadow-sm p-3 mb-5 bg-body rounded">
+						<div class="form-group ">
+							<label for="title"  class="col-sm-2 control-label">제목</label>
+							<input type="text" id="title" name="title" value="${update.title}" class="chk form-control" title="제목을 입력하세요."/>
+						</div>
+						<br/>
+						<div class="form-group ">
+							<label for="content" class="col-sm-2 control-label">내용</label>
+							<textarea id="content" name="content" class="chk fulltext form-control" title="내용을 입력하세요." style="height: 330px;"><c:out value="${update.content}" /></textarea>
+						</div>
+						<br/>
+						<div class="form-group">
+							<div class="container text-center">
+  							<div class="row">
+    							<div class="col">
+    								<label for="writer" class="col-sm-2 control-label">작성자</label>
+      							<input type="text" id="writer" name="writer" value="${update.writer}" readonly="readonly"/>
+    							</div>
+    							<div class="col">
+    								<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
+    								<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>
+    							</div>
+  							</div>
+							</div>
+						</div>
+					</div>	
+					
 					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="submit" class="cancel_btn">취소</button>
+						<button type="submit" class="update_btn btn btn-success">저장</button>
+						<button type="submit" class="cancel_btn btn btn-danger">취소</button>
 					</div>
 				</form>
 			</section>

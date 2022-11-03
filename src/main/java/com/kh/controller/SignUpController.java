@@ -1,13 +1,18 @@
 package com.kh.controller;
 
+import java.sql.SQLException;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.vo.UserVO;
@@ -18,6 +23,87 @@ import com.kh.service.SignUpService;
 public class SignUpController {
 	
 	private static final Logger l = LoggerFactory.getLogger(SignUpController.class);
+	
+	@PostMapping("/signUp/join")
+    public String insertIdPostd(UserVO userVO,HttpServletRequest req,RedirectAttributes rtt) throws SQLException {
+		System.out.println("insertIdPostd");
+        l.info("jsp에 입력한 가입정보");
+           l.info("id-"+userVO.getId());
+           l.info("name-"+userVO.getEmail());
+           l.info("email-"+userVO.getName());         
+//          l.info("회원가입 컨트롤 메소드 실행");
+//         String name=req.getParameter("name");
+//         String id=req.getParameter("id");
+//         String email=req.getParameter("email");      
+         /*l.info("jsp에 입력한 가입정보");
+           l.info("id-"+id);
+           l.info("name-"+name);
+           l.info("email-"+email);      
+*/
+            
+             service.insertSignUp(userVO);
+             
+         return "index";
+      }
+	
+	   // AJAX 아이디 체크
+	   @RequestMapping(value = "/signUp/UserIdChk", method = RequestMethod.GET)
+	   @ResponseBody
+	   public String Id(HttpServletRequest req,UserVO userVo) throws Exception {
+	      l.info("ajax 아이디 중복 검사");
+	      
+	        //jsp에 있는 id-input을 받음
+	      String id = req.getParameter("memberId");
+	      //sql 실행해서 데이터를 저장
+	      UserVO user = service.readSignUp(id);   
+	      //ajax에 리턴할 변수
+	      //id가 이미 있는지 if을 통하여 다른 결과값을 jsp로 리턴
+	      String result;
+	      if (user == null) {
+	         l.info("userid null");
+	         result = "0";
+
+	      } else {
+	         l.info("userid not null");
+	         result = "1";
+	      }
+	      return result;
+	   }
+
+	   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	//3-1. 서비스 처리 객체를 주입(DI)
 		@Inject
@@ -30,12 +116,12 @@ public class SignUpController {
 	// http://localhost:8088/test/signUp/insert
 	// http://localhost:8088/signUp/insert
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	//value="/signUp/insert"에서 member를 빼도 됨
-	public String insertGET() throws Exception {
-		l.info("C: 회원가입 입력페이지 GET");
-		return "/insertMember";
-	}
+		 @RequestMapping(value = "/signUp", method = RequestMethod.GET)
+		   // value="/signUp/insert"에서 member를 빼도 됨
+		   public String insertGET() throws Exception {
+		      l.info("C: 회원가입 입력페이지 GET");
+		      return "/signUp/signUp";
+		   }
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	//value="/signUpr/insertPro"에서 member를 빼도 됨

@@ -13,4 +13,7 @@ public interface SignUpService {
 	// 로그인기능
 	public UserVO loginSignUp(UserVO userVo);
 	
+	 //Ajax 중복아이디 확인
+	   public UserVO readSignUp(String id) throws Exception ;
+	
 }

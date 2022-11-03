@@ -39,6 +39,16 @@ public class UserVO {
 //		this.regdate = regdate;
 //		this.updatedate = updatedate;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "UserVO [singNumber=" + singNumber + ", name=" + name + ", id=" + id + ", pw=" + pw + ", email=" + email
+				+ ", regData=" + regData + ", adminCheck=" + adminCheck + "]";
+	}
+
+
 
 	public String getSingNumber() {
 		return singNumber;

@@ -14,17 +14,13 @@ public class SignUpServiceImpl implements SignUpService {
 	@Inject
 	private SignUpDAO signUpDao;
 	
-	//회원가입
-	@Override
-	public void insertSignUp(UserVO userVo) {
-		//컨트롤러 -> 서비스 호출 -> DAO 호출 -> Mapper -> DB
-		System.out.println("S : 회원가입동작");
-		if(userVo == null) {
-			//처리
-			return;
-		}
-		signUpDao.insertSignUp(userVo);
-	}
+	 //회원가입
+	   @Override
+	   public void insertSignUp(UserVO userVo) {
+	      //컨트롤러 -> 서비스 호출 -> DAO 호출 -> Mapper -> DB
+	      System.out.println("S : 회원가입동작");
+	      signUpDao.insertSignUp(userVo);
+	   }
 
 	//로그인기능
 	@Override
@@ -39,4 +35,12 @@ public class SignUpServiceImpl implements SignUpService {
 		}
 		return returnVO; //null이 반환되면 앞의 코드가 문제가 있다는 것을 바로 알수있다.
 	}	
+	
+	//중복 아이디 찾기
+	   @Override
+	   public UserVO readSignUp(String id) throws Exception {
+//	       l.info("service-메소드");
+//	       l.info("123123==",id);
+	      return    signUpDao.readSignUp(id);
+	   }
 }
